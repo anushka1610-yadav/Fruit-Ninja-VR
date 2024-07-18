@@ -6,6 +6,10 @@ TagManager:
   tags:
   - fruit
   - InstantiatedObject
+  - fruit-apple
+  - fruit-banana
+  - fruit-coconut
+  - fruit-greenApple
   layers:
   - Default
   - TransparentFX

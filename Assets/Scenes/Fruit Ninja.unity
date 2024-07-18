@@ -1358,7 +1358,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1463,7 +1463,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1568,7 +1568,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1669,6 +1669,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsToInstantiate:
   - {fileID: 8373609179872717524, guid: af367476069fd1f4c804db606db9c604, type: 3}
+  - {fileID: 1124618717409865017, guid: 73f84e8e1cfe1d94e8474cf46f831e26, type: 3}
+  - {fileID: 6099611734454830965, guid: 9fcdea689fdd82f47a1d78b5c2a4cfff, type: 3}
+  - {fileID: 6110551400088957113, guid: e86c960d7ace1814da582c948d8d0535, type: 3}
   points:
   - {x: 0.1, y: 3, z: -2}
   - {x: 1, y: 3, z: -1}
@@ -1749,7 +1752,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2391,8 +2394,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0025, y: 0.0004, z: 0.015}
-  m_Center: {x: 0.00015, y: 0.001, z: 0.0096526}
+  m_Size: {x: 0.0025, y: 0.0024447897, z: 0.014999999}
+  m_Center: {x: 0.00015000002, y: -0.00002239449, z: 0.0096526}
 --- !u!4 &1461582686 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2615012475436276145, guid: 913c7bdf893b1cc408086ad90c1ff4a3, type: 3}
@@ -2433,6 +2436,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   apple: {fileID: 5443565205286849442, guid: 5a8577534279d4f45b09647cda700420, type: 3}
+  coconut: {fileID: 259701730117821307, guid: dfd88f2809b135d4884341ad90d95d2d, type: 3}
+  banana: {fileID: 6622070880853490169, guid: 7b728228f67925a4da8bf7d50cfa837d, type: 3}
+  greenApple: {fileID: 8838994280979000156, guid: 6c8152bc2908b6c409f5a11194dcb29c, type: 3}
   destroyDelay: 2
   moveSpeed: 0.01
 --- !u!1 &1653229695
@@ -2757,7 +2763,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

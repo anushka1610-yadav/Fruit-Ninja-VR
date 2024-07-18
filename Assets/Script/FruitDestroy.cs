@@ -4,15 +4,36 @@ using System.Collections;
 public class FruitDestroy : MonoBehaviour
 {
     public GameObject apple;
+    public GameObject coconut;
+    public GameObject banana;
+    public GameObject greenApple;
+
     private Animator animator; // Assign the Animator component in the Inspector
     public float destroyDelay = 2f; // Time to wait before destroying the fruit
     public float moveSpeed = 0.01f; // Speed at which the objects will move downwards
+    private GameObject fruitSelected;
 
     private void OnTriggerEnter(Collider other)
     {
         // Check if the other object is one of the instantiated objects
-        if (other.CompareTag("InstantiatedObject"))
+        if (other.CompareTag("fruit-apple"))
         {
+            fruitSelected = apple;
+            StartCoroutine(AnimateAndDestroyFruit(other.gameObject));
+        }
+        else if (other.CompareTag("fruit-banana"))
+        {
+            fruitSelected = banana;
+            StartCoroutine(AnimateAndDestroyFruit(other.gameObject));
+        }
+        else if (other.CompareTag("fruit-coconut"))
+        {
+            fruitSelected = coconut;
+            StartCoroutine(AnimateAndDestroyFruit(other.gameObject));
+        }
+        else if (other.CompareTag("fruit-greenApple"))
+        {
+            fruitSelected = greenApple;
             StartCoroutine(AnimateAndDestroyFruit(other.gameObject));
         }
     }
@@ -30,10 +51,22 @@ public class FruitDestroy : MonoBehaviour
         //        }
 
         Debug.Log(obj.name);
-        if(obj.name == "apple_whole")
-        {
-            //animator = apple.GetComponent<Animator>();
-        }
+        //if(obj.name == "apple_whole(Clone)")
+        //{
+        //    fruitSelected = apple;
+        //}
+        //else if (obj.name == "Coconut_whole(Clone)")
+        //{
+        //    fruitSelected = coconut;
+        //}
+        //else if (obj.name == "Banana_whole(Clone)")
+        //{
+        //    fruitSelected = banana;
+        //}
+        //else if (obj.name == "GreenApple_whole(Clone)")
+        //{
+        //    fruitSelected = greenApple;
+        //}
         // Get the position and rotation of the original object
         Vector3 position = obj.transform.position;
         Quaternion rotation = obj.transform.rotation;
@@ -42,7 +75,7 @@ public class FruitDestroy : MonoBehaviour
         obj.SetActive(false);
 
         // Instantiate the two halves at the same position with a slight offset
-        GameObject fruit = Instantiate(apple, position + new Vector3(0.01f, 0, 0), rotation);
+        GameObject fruit = Instantiate(fruitSelected, position + new Vector3(0.01f, 0, 0), rotation);
         animator = fruit.GetComponent<Animator>();
 
         // Play the animation for splitting and falling
