@@ -3,6 +3,7 @@ using System.Collections;
 
 public class FruitDestroy : MonoBehaviour
 {
+    public ScoreSystem score;    
     public GameObject apple;
     public GameObject coconut;
     public GameObject banana;
@@ -13,60 +14,39 @@ public class FruitDestroy : MonoBehaviour
     public float moveSpeed = 0.01f; // Speed at which the objects will move downwards
     private GameObject fruitSelected;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         // Check if the other object is one of the instantiated objects
         if (other.CompareTag("fruit-apple"))
         {
             fruitSelected = apple;
             StartCoroutine(AnimateAndDestroyFruit(other.gameObject));
+            score.totalApple();
         }
         else if (other.CompareTag("fruit-banana"))
         {
             fruitSelected = banana;
             StartCoroutine(AnimateAndDestroyFruit(other.gameObject));
+            score.totalBanana();
+
         }
         else if (other.CompareTag("fruit-coconut"))
         {
             fruitSelected = coconut;
             StartCoroutine(AnimateAndDestroyFruit(other.gameObject));
+            score.totalCoconut();
         }
         else if (other.CompareTag("fruit-greenApple"))
         {
             fruitSelected = greenApple;
             StartCoroutine(AnimateAndDestroyFruit(other.gameObject));
+            score.totalGreenApple();
         }
     }
 
     private IEnumerator AnimateAndDestroyFruit(GameObject obj)
     {
-        //        // Optionally, add some physics to the halves
-        //        Rigidbody rb1 = half1.GetComponent<Rigidbody>();
-        //        Rigidbody rb2 = half2.GetComponent<Rigidbody>();
-
-        //        if (rb1 != null && rb2 != null)
-        //        {
-        //            rb1.AddForce(Vector3.left * 2, ForceMode.Impulse);
-        //            rb2.AddForce(Vector3.right * 2, ForceMode.Impulse);
-        //        }
-
         Debug.Log(obj.name);
-        //if(obj.name == "apple_whole(Clone)")
-        //{
-        //    fruitSelected = apple;
-        //}
-        //else if (obj.name == "Coconut_whole(Clone)")
-        //{
-        //    fruitSelected = coconut;
-        //}
-        //else if (obj.name == "Banana_whole(Clone)")
-        //{
-        //    fruitSelected = banana;
-        //}
-        //else if (obj.name == "GreenApple_whole(Clone)")
-        //{
-        //    fruitSelected = greenApple;
-        //}
         // Get the position and rotation of the original object
         Vector3 position = obj.transform.position;
         Quaternion rotation = obj.transform.rotation;
@@ -83,17 +63,6 @@ public class FruitDestroy : MonoBehaviour
 
         // Wait for the animation to complete
         yield return new WaitForSeconds(destroyDelay);
-
-        // Move the object down
-        //Vector3 endPosition = new Vector3(obj.transform.position.x, 0.2f, obj.transform.position.z); // End position on the plane
-        //while (obj.transform.position.y > endPosition.y)
-        //{
-        //    obj.transform.position = Vector3.MoveTowards(obj.transform.position, endPosition, moveSpeed);
-        //    yield return null;
-        //}
-
-        //// Wait for the specified delay before destroying the object
-        //yield return new WaitForSeconds(destroyDelay);
 
         // Destroy the fruit object
         Destroy(fruit);
