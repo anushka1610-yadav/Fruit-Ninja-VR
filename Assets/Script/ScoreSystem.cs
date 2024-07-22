@@ -17,6 +17,30 @@ public class ScoreSystem : MonoBehaviour
     //[SerializeField]
     private static int totalScore;
 
+    public TMP_Text scoreUI;
+    public TMP_Text appleUI;
+    public TMP_Text bananaUI;
+    public TMP_Text coconutUI;
+    public TMP_Text greenAppleUI;
+
+ 
+    
+    void Update()
+    {
+        Debug.Log("Total Score: " + totalScore);
+        Debug.Log("Total Apple: " + appleCount);
+        Debug.Log("Total Score: " + bananaCount);
+        Debug.Log("Total Score: " + coconutCount);
+        Debug.Log("Total Score: " + greenAppleCount);
+
+        scoreUI.text = $"Score : {totalScore}";
+        appleUI.text = appleCount.ToString();
+        bananaUI.text = $"{bananaCount}";
+        coconutUI.text = $"{coconutCount}";
+        greenAppleUI.text = $"{greenAppleCount}";
+
+    }
+
     public void totalApple()
     {
         appleCount += 1;
