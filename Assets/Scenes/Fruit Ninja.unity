@@ -891,7 +891,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.412888, y: 0.2, z: 10}
+  m_Size: {x: 10.412888, y: 0.01, z: 10}
   m_Center: {x: 0.20644379, y: 1.110223e-16, z: 0}
 --- !u!114 &312834104
 MonoBehaviour:
@@ -3280,9 +3280,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToInstantiate:
+  - {fileID: 6365561964717895633, guid: fff0ebab0edb94f4fb884d2626e23701, type: 3}
   - {fileID: 8373609179872717524, guid: af367476069fd1f4c804db606db9c604, type: 3}
-  - {fileID: 1124618717409865017, guid: 73f84e8e1cfe1d94e8474cf46f831e26, type: 3}
   - {fileID: 6099611734454830965, guid: 9fcdea689fdd82f47a1d78b5c2a4cfff, type: 3}
+  - {fileID: 1124618717409865017, guid: 73f84e8e1cfe1d94e8474cf46f831e26, type: 3}
   - {fileID: 6110551400088957113, guid: e86c960d7ace1814da582c948d8d0535, type: 3}
   points:
   - {fileID: 1008154887}
@@ -4187,6 +4188,7 @@ MonoBehaviour:
   coconut: {fileID: 259701730117821307, guid: dfd88f2809b135d4884341ad90d95d2d, type: 3}
   banana: {fileID: 6622070880853490169, guid: 7b728228f67925a4da8bf7d50cfa837d, type: 3}
   greenApple: {fileID: 8838994280979000156, guid: 6c8152bc2908b6c409f5a11194dcb29c, type: 3}
+  bomb: {fileID: 7375845306279533959, guid: d4e8b6533bcd79645a40f7d26e15e516, type: 3}
   destroyDelay: 2
   moveSpeed: 0.01
 --- !u!1 &1477327343

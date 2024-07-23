@@ -64,4 +64,12 @@ public class ScoreSystem : MonoBehaviour
         greenAppleCount += 1;
         totalScore += 4;
     }
+
+    public void totalBomb()
+    {
+        if(totalScore > 0)
+        {
+            totalScore -= 1;
+        }
+    }
 }

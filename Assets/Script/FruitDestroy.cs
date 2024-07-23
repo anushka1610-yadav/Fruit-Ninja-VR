@@ -8,7 +8,8 @@ public class FruitDestroy : MonoBehaviour
     public GameObject coconut;
     public GameObject banana;
     public GameObject greenApple;
-
+    public GameObject bomb;
+    //private ParticleSystem bombPlay;
     private Animator animator; // Assign the Animator component in the Inspector
     public float destroyDelay = 2f; // Time to wait before destroying the fruit
     public float moveSpeed = 0.01f; // Speed at which the objects will move downwards
@@ -42,6 +43,12 @@ public class FruitDestroy : MonoBehaviour
             StartCoroutine(AnimateAndDestroyFruit(other.gameObject));
             score.totalGreenApple();
         }
+        else if(other.CompareTag("Bomb"))
+        {
+            fruitSelected = bomb;
+            StartCoroutine(AnimateAndDestroyBomb(other.gameObject));
+            score.totalBomb();
+        }
     }
 
     private IEnumerator AnimateAndDestroyFruit(GameObject obj)
@@ -67,6 +74,51 @@ public class FruitDestroy : MonoBehaviour
         // Destroy the fruit object
         Destroy(fruit);
     }
+
+    private IEnumerator AnimateAndDestroyBomb(GameObject bombObj)
+    {
+        // Get the position of the bomb
+        Vector3 position = bombObj.transform.position;
+
+        // Deactivate the original bomb object
+        bombObj.SetActive(false);
+
+        // Instantiate the bomb prefab and get the ParticleSystem component
+        GameObject bombInstance = Instantiate(fruitSelected, position, Quaternion.identity);
+        ParticleSystem bombParticleSystem = bombInstance.GetComponent<ParticleSystem>();
+
+        // Play the bomb particle system
+        bombParticleSystem.Play();
+
+        // Wait for the particle system to complete
+        yield return new WaitForSeconds(bombParticleSystem.main.duration);
+
+        // Destroy the particle system object
+        Destroy(bombInstance);
+    }
+    //private IEnumerator AnimateAndDestroyBomb(ParticleSystem obj)
+    //{
+    //    Debug.Log(obj.name);
+    //    // Get the position and rotation of the original object
+    //    Vector3 position = obj.transform.position;
+    //    Quaternion rotation = obj.transform.rotation;
+
+    //    // Deactivate the original object
+    //    obj.SetActive(false);
+
+    //    // Instantiate the two halves at the same position with a slight offset
+    //    GameObject fruit = Instantiate(fruitSelected, position + new Vector3(0.01f, 0, 0), rotation);
+    //    bombPlay = fruit.GetComponent<ParticleSystem>();
+
+    //    // Play the animation for splitting and falling
+    //    bombPlay.Play();
+
+    //    // Wait for the animation to complete
+    //    yield return new WaitForSeconds(destroyDelay);
+
+    //    // Destroy the fruit object
+    //    Destroy(fruit);
+    //}
 }
 
 

@@ -10,6 +10,7 @@ TagManager:
   - fruit-banana
   - fruit-coconut
   - fruit-greenApple
+  - Bomb
   layers:
   - Default
   - TransparentFX
