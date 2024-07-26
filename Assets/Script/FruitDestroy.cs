@@ -72,6 +72,7 @@ public class FruitDestroy : MonoBehaviour
         yield return new WaitForSeconds(destroyDelay);
 
         // Destroy the fruit object
+        Destroy(obj);
         Destroy(fruit);
     }
 
@@ -94,6 +95,7 @@ public class FruitDestroy : MonoBehaviour
         yield return new WaitForSeconds(bombParticleSystem.main.duration);
 
         // Destroy the particle system object
+        Destroy(bombObj);
         Destroy(bombInstance);
     }
     //private IEnumerator AnimateAndDestroyBomb(ParticleSystem obj)
