@@ -51,7 +51,7 @@ public class GameScript : MonoBehaviour
 
         // Move up to the specified height with dynamic y-axis offset
         Vector3 targetPositionUp = new Vector3(targetPoint.position.x, targetPoint.position.y + yAxisOffset, targetPoint.position.z);
-        while (instantiatedObject.transform.position.y < targetPositionUp.y)
+        while (instantiatedObject.transform.position.y < targetPositionUp.y && instantiatedObject != null)
         {
             instantiatedObject.transform.position = Vector3.MoveTowards(instantiatedObject.transform.position, targetPositionUp, moveSpeed);
             yield return null;

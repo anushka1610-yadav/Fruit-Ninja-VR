@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class ScoreSystem : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class ScoreSystem : MonoBehaviour
     private int coconutCount;
     [SerializeField]
     private int greenAppleCount;
+    [SerializeField]
+    private GameObject danger;
     //[SerializeField]
     private static int totalScore;
 
@@ -67,9 +71,36 @@ public class ScoreSystem : MonoBehaviour
 
     public void totalBomb()
     {
-        if(totalScore > 0)
+        Volume volume = danger.GetComponent<Volume>();
+        Debug.Log(volume);
+        if (volume != null && volume.profile != null)
+        {
+            if (volume.profile.TryGet<Vignette>(out Vignette vignette))
+            {
+                Debug.Log("Vignette component is present in the VolumeProfile.");
+                vignette.active = true;
+                Debug.Log("Vignette component is now enabled.");
+                StartCoroutine(DisableVignetteAfterDelay(vignette, 1.0f));
+            }
+            else
+            {
+                Debug.LogWarning("Vignette component is not present in the VolumeProfile.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Volume or VolumeProfile is missing.");
+        }
+        if (totalScore > 0)
         {
             totalScore -= 1;
         }
+    }
+
+    private IEnumerator DisableVignetteAfterDelay(Vignette vignette, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        vignette.active = false;
+        Debug.Log("Vignette component is now disabled.");
     }
 }

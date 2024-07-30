@@ -9,11 +9,15 @@ public class FruitDestroy : MonoBehaviour
     public GameObject banana;
     public GameObject greenApple;
     public GameObject bomb;
-    //private ParticleSystem bombPlay;
     private Animator animator; // Assign the Animator component in the Inspector
     public float destroyDelay = 2f; // Time to wait before destroying the fruit
     public float moveSpeed = 0.01f; // Speed at which the objects will move downwards
     private GameObject fruitSelected;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        FindObjectOfType<AudioManager>().Play("CutSound");
+    }
 
     private void OnTriggerExit(Collider other)
     {
@@ -89,6 +93,7 @@ public class FruitDestroy : MonoBehaviour
         ParticleSystem bombParticleSystem = bombInstance.GetComponent<ParticleSystem>();
 
         // Play the bomb particle system
+        FindObjectOfType<AudioManager>().Play("BombSound");
         bombParticleSystem.Play();
 
         // Wait for the particle system to complete
