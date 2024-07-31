@@ -13,10 +13,14 @@ public class FruitDestroy : MonoBehaviour
     public float destroyDelay = 2f; // Time to wait before destroying the fruit
     public float moveSpeed = 0.01f; // Speed at which the objects will move downwards
     private GameObject fruitSelected;
+    private ParticleSystem juiceParticleEffect;
 
     private void OnTriggerEnter(Collider other)
     {
-        FindObjectOfType<AudioManager>().Play("CutSound");
+        if ((other.CompareTag("fruit-apple")) || (other.CompareTag("fruit-banana")) || (other.CompareTag("fruit-coconut")) || (other.CompareTag("fruit-greenApple")) || (other.CompareTag("Bomb")))
+        {
+            FindObjectOfType<AudioManager>().Play("CutSound");
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -24,6 +28,7 @@ public class FruitDestroy : MonoBehaviour
         // Check if the other object is one of the instantiated objects
         if (other.CompareTag("fruit-apple"))
         {
+            
             fruitSelected = apple;
             StartCoroutine(AnimateAndDestroyFruit(other.gameObject));
             score.totalApple();
@@ -53,11 +58,13 @@ public class FruitDestroy : MonoBehaviour
             StartCoroutine(AnimateAndDestroyBomb(other.gameObject));
             score.totalBomb();
         }
+        //other.enabled = false;
     }
 
     private IEnumerator AnimateAndDestroyFruit(GameObject obj)
     {
         Debug.Log(obj.name);
+        
         // Get the position and rotation of the original object
         Vector3 position = obj.transform.position;
         Quaternion rotation = obj.transform.rotation;
@@ -67,6 +74,8 @@ public class FruitDestroy : MonoBehaviour
 
         // Instantiate the two halves at the same position with a slight offset
         GameObject fruit = Instantiate(fruitSelected, position + new Vector3(0.01f, 0, 0), rotation);
+        juiceParticleEffect = fruitSelected.GetComponentInChildren<ParticleSystem>();
+        juiceParticleEffect.Play();
         animator = fruit.GetComponent<Animator>();
 
         // Play the animation for splitting and falling
