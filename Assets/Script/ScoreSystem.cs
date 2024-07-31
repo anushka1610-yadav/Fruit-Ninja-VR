@@ -19,29 +19,21 @@ public class ScoreSystem : MonoBehaviour
     [SerializeField]
     private GameObject danger;
     //[SerializeField]
+    private static int life = 03;
     private static int totalScore;
-
+    //private static int life = 03;
     public TMP_Text scoreUI;
-    public TMP_Text appleUI;
-    public TMP_Text bananaUI;
-    public TMP_Text coconutUI;
-    public TMP_Text greenAppleUI;
+    public TMP_Text lifeUI;
+    public TMP_Text timeUI;
 
  
     
     void Update()
     {
-        Debug.Log("Total Score: " + totalScore);
-        Debug.Log("Total Apple: " + appleCount);
-        Debug.Log("Total Score: " + bananaCount);
-        Debug.Log("Total Score: " + coconutCount);
-        Debug.Log("Total Score: " + greenAppleCount);
+        Debug.Log("Total Life: " + life);
 
         scoreUI.text = $"Score : {totalScore}";
-        appleUI.text = appleCount.ToString();
-        bananaUI.text = $"{bananaCount}";
-        coconutUI.text = $"{coconutCount}";
-        greenAppleUI.text = $"{greenAppleCount}";
+        lifeUI.text = $"Life Left : {life.ToString("D2")}";
 
     }
 
@@ -91,9 +83,21 @@ public class ScoreSystem : MonoBehaviour
         {
             Debug.LogError("Volume or VolumeProfile is missing.");
         }
+
+        //checked for score deduction
         if (totalScore > 0)
         {
             totalScore -= 1;
+        }
+
+        //checked for life left
+        if (life > 0)
+        {
+            life -= 1;
+        }
+        else
+        {
+            Debug.Log("Game Over");
         }
     }
 
