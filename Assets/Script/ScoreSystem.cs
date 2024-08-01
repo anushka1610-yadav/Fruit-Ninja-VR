@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System;
 using UnityEngine.Rendering;
@@ -20,11 +21,17 @@ public class ScoreSystem : MonoBehaviour
     private GameObject danger;
     //[SerializeField]
     private static int life = 03;
-    private static int totalScore;
-    //private static int life = 03;
+    private static int totalScore = 0;
+    //UI Elements Input
+    public RawImage scorePanel;
+    public RawImage gameOverPanel;
+    public TMP_Text gameOverScoreUI;
     public TMP_Text scoreUI;
     public TMP_Text lifeUI;
     public TMP_Text timeUI;
+    //Scripts Input
+    public GameObject gameScript;
+    public GameObject fruitDestroy;
 
  
     
@@ -32,7 +39,8 @@ public class ScoreSystem : MonoBehaviour
     {
         Debug.Log("Total Life: " + life);
 
-        scoreUI.text = $"Score : {totalScore}";
+        scoreUI.text = $"Score : {totalScore:D2}";
+        gameOverScoreUI.text = $"Score : {totalScore:D2}";
         lifeUI.text = $"Life Left : {life.ToString("D2")}";
 
     }
@@ -98,6 +106,11 @@ public class ScoreSystem : MonoBehaviour
         else
         {
             Debug.Log("Game Over");
+            scorePanel.gameObject.SetActive(false);
+            gameOverPanel.gameObject.SetActive(true);
+            gameScript.SetActive(false);
+            fruitDestroy.SetActive(false);
+
         }
     }
 

@@ -2221,13 +2221,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716182948}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.87169814, g: 0.044407193, b: 0.044407193, a: 0.13333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2370,9 +2370,14 @@ MonoBehaviour:
   coconutCount: 0
   greenAppleCount: 0
   danger: {fileID: 1027562368}
+  scorePanel: {fileID: 2018763316}
+  gameOverPanel: {fileID: 716182950}
+  gameOverScoreUI: {fileID: 1577845801}
   scoreUI: {fileID: 1006846136}
   lifeUI: {fileID: 1860724997}
   timeUI: {fileID: 577467659}
+  gameScript: {fileID: 1049484295}
+  fruitDestroy: {fileID: 44619298}
 --- !u!1 &743823356
 GameObject:
   m_ObjectHideFlags: 0
@@ -3614,56 +3619,6 @@ Transform:
   - {fileID: 1027562370}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1137992978
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1137992979}
-  - component: {fileID: 1137992980}
-  m_Layer: 0
-  m_Name: UIScript
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1137992979
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137992978}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.47244, y: 0.89943886, z: 10.735764}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1137992980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137992978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b3dbd8148c7fb84a925d5c94bb0d2d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: {fileID: 728826400}
-  ScoreUI: {fileID: 2018763314}
-  GameOverUI: {fileID: 716182948}
-  scoreUI: {fileID: 1006846136}
-  lifeUI: {fileID: 1860724997}
-  timeUI: {fileID: 577467659}
 --- !u!1 &1154058461
 GameObject:
   m_ObjectHideFlags: 0
@@ -5202,7 +5157,7 @@ GameObject:
   - component: {fileID: 1802562222}
   - component: {fileID: 1802562221}
   m_Layer: 5
-  m_Name: Score
+  m_Name: GameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9121,4 +9076,3 @@ SceneRoots:
   - {fileID: 884535125}
   - {fileID: 44619297}
   - {fileID: 1112948579}
-  - {fileID: 1137992979}
