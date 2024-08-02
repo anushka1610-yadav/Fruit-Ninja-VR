@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -32,9 +33,7 @@ public class ScoreSystem : MonoBehaviour
     //Scripts Input
     public GameObject gameScript;
     public GameObject fruitDestroy;
-
  
-    
     void Update()
     {
         Debug.Log("Total Life: " + life);
@@ -42,6 +41,12 @@ public class ScoreSystem : MonoBehaviour
         scoreUI.text = $"Score : {totalScore:D2}";
         gameOverScoreUI.text = $"Score : {totalScore:D2}";
         lifeUI.text = $"Life Left : {life.ToString("D2")}";
+
+        if(life == 0)
+        {
+            Debug.Log("Game Over");
+            gameOverFunc();
+        }
 
     }
 
@@ -67,6 +72,21 @@ public class ScoreSystem : MonoBehaviour
     {
         greenAppleCount += 1;
         totalScore += 4;
+    }
+
+    public void restartFunc()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        Debug.Log(sceneName);
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void gameOverFunc()
+    {
+        scorePanel.gameObject.SetActive(false);
+        gameOverPanel.gameObject.SetActive(true);
+        gameScript.SetActive(false);
+        fruitDestroy.SetActive(false);
     }
 
     public void totalBomb()
@@ -102,15 +122,6 @@ public class ScoreSystem : MonoBehaviour
         if (life > 0)
         {
             life -= 1;
-        }
-        else
-        {
-            Debug.Log("Game Over");
-            scorePanel.gameObject.SetActive(false);
-            gameOverPanel.gameObject.SetActive(true);
-            gameScript.SetActive(false);
-            fruitDestroy.SetActive(false);
-
         }
     }
 
