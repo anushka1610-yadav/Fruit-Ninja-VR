@@ -11,9 +11,20 @@ public class FruitDestroy : MonoBehaviour
     public GameObject bomb;
     private Animator animator; // Assign the Animator component in the Inspector
     public float destroyDelay = 2f; // Time to wait before destroying the fruit
-    public float moveSpeed = 0.01f; // Speed at which the objects will move downwards
+    public float moveSpeed = 0.02f; // Speed at which the objects will move downwards
     private GameObject fruitSelected;
     private ParticleSystem juiceParticleEffect;
+
+    void Update()
+    {
+        Debug.Log(score.timeRemaining);
+        float timeLeft = score.timeRemaining;
+        if (timeLeft < 30)
+        {
+            moveSpeed = 0.05f;
+            Debug.Log("Speed Changed");
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

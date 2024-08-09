@@ -20,9 +20,12 @@ public class ScoreSystem : MonoBehaviour
     private int greenAppleCount;
     [SerializeField]
     private GameObject danger;
+
+    public float timeRemaining = 60f;
+    public bool timerIsRunning = false;
     //[SerializeField]
-    private static int life = 03;
-    private static int totalScore = 0;
+    private int life = 03;
+    private int totalScore = 0;
     //UI Elements Input
     public RawImage scorePanel;
     public RawImage gameOverPanel;
@@ -33,9 +36,31 @@ public class ScoreSystem : MonoBehaviour
     //Scripts Input
     public GameObject gameScript;
     public GameObject fruitDestroy;
- 
+
+    public void timeStart()
+    {
+        // Starts the timer automatically
+        timerIsRunning = true;
+    }
+
     void Update()
     {
+        if (timerIsRunning)
+        {
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+                DisplayTime(timeRemaining);
+            }
+            else
+            {
+                Debug.Log("Time has run out!");
+                timeRemaining = 0;
+                timerIsRunning = false;
+                gameOverFunc();
+            }
+        }
+
         Debug.Log("Total Life: " + life);
 
         scoreUI.text = $"Score : {totalScore:D2}";
@@ -74,11 +99,11 @@ public class ScoreSystem : MonoBehaviour
         totalScore += 4;
     }
 
-    public void restartFunc()
+    public void restartFunc(string name)
     {
-        string sceneName = SceneManager.GetActiveScene().name;
-        Debug.Log(sceneName);
-        SceneManager.LoadScene(sceneName);
+        //string sceneName = SceneManager.GetActiveScene().name;
+        //Debug.Log(sceneName);
+        SceneManager.LoadScene(name);
     }
 
     public void gameOverFunc()
@@ -87,6 +112,16 @@ public class ScoreSystem : MonoBehaviour
         gameOverPanel.gameObject.SetActive(true);
         gameScript.SetActive(false);
         fruitDestroy.SetActive(false);
+    }
+
+    void DisplayTime(float timeToDisplay)
+    {
+        timeToDisplay += 1;
+
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+
+        timeUI.text = "Time Left : "+string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public void totalBomb()
