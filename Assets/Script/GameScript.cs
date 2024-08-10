@@ -1,20 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameScript : MonoBehaviour
 {
+    public ScoreSystem score;
+    public RawImage startPanel;
+    public RawImage scoreUIPanel;
     public GameObject[] objectsToInstantiate; // Array to hold different prefabs to instantiate
     public Transform[] points; // Array to hold the possible points
     public float moveSpeed = 0.01f; // Speed at which the objects will move downwards
     public float randomInterval = 1f;
     public float yAxisOffset = 0.5f; // Offset for the y-axis movement
 
-    void Start()
+    public void gameStart()
     {
         if (points.Length > 0 && objectsToInstantiate.Length > 0)
         {
             StartCoroutine(InstantiateRandomly());
+            startPanel.gameObject.SetActive(false);
+            scoreUIPanel.gameObject.SetActive(true);
+            score.timeStart();
         }
         else
         {
